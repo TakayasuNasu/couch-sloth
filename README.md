@@ -4,7 +4,7 @@ Couch Sloth
 What is Couch Sloth
 ---
 
-**What is Couch Sloth** is application which someone watch youtube with friend during chatting.
+**Couch Sloth** is application which someone watch youtube with friend during chatting.
 
 Requirements
 ---
