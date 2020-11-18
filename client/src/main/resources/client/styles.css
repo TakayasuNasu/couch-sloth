@@ -1,3 +1,11 @@
 .label {
     -fx-text-fill: blue;
 }
+
+.tic-button {
+    -fx-font: 10px "Serif";
+    -fx-padding: 10px;
+    -fx-pref-height: 20px;
+    -fx-pref-width: 20px;
+    -fx-background-color: gray;
+}
