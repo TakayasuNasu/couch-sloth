@@ -57,6 +57,15 @@ Structure
 Usage
 ---
 
+REST API
+---
+
+| Endpoint  | describe  |
+|---|---|
+| `/say`  | Massage send websocket |
+| `/video/play`  | Start youtube |
+
+
 Contributing
 ---
 
@@ -67,7 +76,10 @@ Contributing
 Reference
 ---
 
+- [JavaFX Documentation Project](https://fxdocs.github.io/docs/)
 - [RobertLemmens/youtube\-sync: Watch youtube together](https://github.com/RobertLemmens/youtube-sync)
 - [DomHeal/JavaFX\-Chat: JavaFX Socket Multithreaded Chat Client / Server \- FXML](https://github.com/DomHeal/JavaFX-Chat)
 - [akullpp/awesome\-java: A curated list of awesome frameworks, libraries and software for the Java programming language\.](https://github.com/akullpp/awesome-java)
 - [mhrimaz/AwesomeJavaFX: A curated list of awesome JavaFX libraries, books, frameworks, etc\.\.\.](https://github.com/mhrimaz/AwesomeJavaFX)
+- [Quick Start—Ktor 1\.4\.0](https://ktor.io/docs/quickstart-index.html)
+- [javaFX\-multiple\-controllers\-tutorial](https://github.com/mvpjava/javaFX-multiple-controllers-tutorial)
