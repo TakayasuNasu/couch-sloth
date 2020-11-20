@@ -10,6 +10,7 @@ import Index from './pages/Index'
 import Chats from './pages/Chats'
 import Header from './pages/Header'
 import Player from './pages/Player'
+import Messages from './pages/Messages'
 
 const App = () => {
   return (
@@ -25,6 +26,9 @@ const App = () => {
           </Route>
           <Route path='/player'>
             <Player />
+          </Route>
+          <Route path='/messages'>
+            <Messages />
           </Route>
           <Route path='/'>
             <Index />
