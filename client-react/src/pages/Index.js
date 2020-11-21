@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import logo from '../logo.svg'
+import WebSocket from '../components/WebSocket'
 import '../App.css'
 
 const Index = props => (
@@ -11,6 +12,7 @@ const Index = props => (
     <p className="App-intro">
       To get started, edit <code>src/App.js</code> and save to reload.
     </p>
+    <WebSocket />
   </div>
 )
 

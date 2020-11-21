@@ -14,14 +14,9 @@ class ApiControllerKtTest {
   fun testConversation() {
 
     withTestApplication(Application::main) {
-      application.routing {
-        webSocketRaw("/say") {
-          outgoing.send(Frame.Text("HELLO"))
-          outgoing.send(Frame.Close())
-        }
-      }
       handleWebSocketConversation("/say") { incoming, outgoing ->
-        assertEquals("HELLO", (incoming.receive() as Frame.Text).readText())
+        outgoing.send(Frame.Text("HELLO"))
+        assertEquals("YOU SAID HELLO", (incoming.receive() as Frame.Text).readText())
       }
     }
   }
