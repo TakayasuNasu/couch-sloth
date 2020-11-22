@@ -1,6 +1,7 @@
 package main
 
 import io.ktor.application.*
+import io.ktor.features.CORS
 import main.controllers.apiController
 import io.ktor.http.cio.websocket.pingPeriod
 import io.ktor.http.cio.websocket.timeout
@@ -15,6 +16,9 @@ fun Application.main() {
   install(WebSockets) {
     timeout = Duration.ofSeconds(5)
     pingPeriod = Duration.ofMinutes(1)
+  }
+  install(CORS) {
+    anyHost()
   }
   routing {
     apiController()
