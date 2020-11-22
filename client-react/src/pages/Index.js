@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Player from '../components/Player'
 import Header from '../components/Header'
 import Messages from '../components/Messages'
+import Chats from '../components/Chats'
 
 const Grid = styled.main`
   display: grid;
@@ -30,6 +31,7 @@ const AreaPlayer = styled.section`
 const AreaChat = styled.section`
   grid-area: chat;
   justify-self: center;
+  overflow-x: scroll;
   width: 402px;
   color: #fff;
 `
@@ -37,6 +39,21 @@ const AreaChat = styled.section`
 const AreaMessages = styled.section`
   grid-area: input;
 `
+
+const data = [
+  {userName: 'Yasu', messages: 'that we here highly resolve'},
+  {userName: 'Yuki', messages: 'that these dead shall not have died in vain—that this nation,'},
+  {userName: 'Nico', messages: 'under God, shall have a new birth of freedom—and that government of the people, by the people,'},
+  {userName: 'Derrick', messages: 'by the people, for the people, shall not perish from the earth.'},
+  {userName: 'Shin', messages: 'that we here highly resolve'},
+  {userName: 'Taro', messages: 'that these dead shall not have died in vain—that this nation,'},
+  {userName: 'beckham', messages: 'under God, shall have a new birth of freedom—and that government of the people, by the people,'},
+  {userName: 'amazon', messages: 'by the people, for the people, shall not perish from the earth.'},
+  {userName: 'google', messages: 'that we here highly resolve'},
+  {userName: 'facebook', messages: 'that these dead shall not have died in vain—that this nation,'},
+  {userName: 'apple', messages: 'under God, shall have a new birth of freedom—and that government of the people, by the people,'},
+  {userName: 'microsoft', messages: 'by the people, for the people, shall not perish from the earth.'},
+]
 
 const Index = props => (
   <Grid>
@@ -47,7 +64,7 @@ const Index = props => (
       <Player />
     </AreaPlayer>
     <AreaChat>
-      <div>hoge</div>
+      <Chats messages={data} />
     </AreaChat>
     <AreaMessages>
       <Messages />
