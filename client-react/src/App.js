@@ -12,6 +12,9 @@ import Chats from './pages/Chats'
 import Header from './pages/Header'
 import Player from './pages/Player'
 import Messages from './pages/Messages'
+import Modal from './pages/Modal'
+import './App.css'
+
 import Searchbar from './components/Searchbar'
 import VideoDescription from './components/VideoDescription'
 import VideoList from './components/VideoList'
@@ -64,6 +67,9 @@ class App extends React.Component {
             <Route path='/videolist'>
               <VideoList />
             </Route>
+            <Route path='/modal'>
+              <Modal />
+            </Route>
             <Route path='/'>
               <Index />
             </Route>
@@ -72,6 +78,6 @@ class App extends React.Component {
       </React.Fragment>
     )
   }
-}
 
+}
 export default App;

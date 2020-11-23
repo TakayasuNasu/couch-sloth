@@ -1,7 +1,6 @@
-import React from 'react';
-import styled from "styled-components";
-import font from './Fonts/OleoScript-Bold.ttf';
-import logo from './icons/sloth.png'
+import React from 'react'
+import styled from "styled-components"
+import logo from '../img/sloth.png'
 
 
 // Styled CSS
@@ -28,18 +27,18 @@ import logo from './icons/sloth.png'
     padding: 20px;
     margin-top: 5px;
   `;
-  
-  
+
+
 
 
 // Html Code
 const Header = props => (
   <Wrapper>
-  <Navbar>
+    <Navbar>
       <img src={logo} alt="Logo"></img>
-    <Brand>Couch-Sloth</Brand>
-  </Navbar>
-</Wrapper>
+      <Brand>Couch-Sloth</Brand>
+    </Navbar>
+  </Wrapper>
 )
 
 export default Header
