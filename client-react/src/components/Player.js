@@ -5,9 +5,6 @@ import ReactPlayer from 'react-player'
 const Div = styled.div`
   width: 912px;
   height: 516px;
-  img {
-    max-width: 100%;
-  }
 `
 
 const Player = props => (
