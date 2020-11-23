@@ -68,7 +68,7 @@ class TextInput extends React.Component {
 
     handleSubmit(event) {
         if (this.state.value) {
-            this.props.sendMessage({userName: 'Yasu', messages: this.state.value})
+            this.props.sendMessage({userName: this.props.userName, messages: this.state.value, iconColor:this.props.iconColor})
         }
         this.setState({value: ''})
         event.preventDefault()
@@ -88,6 +88,12 @@ class TextInput extends React.Component {
             </Wrapper>
         );
     }
+}
+
+TextInput.defaultProps = {
+    userName: '',
+    iconColor: '#0652DD',
+    sendMessage: () => []
 }
 
 export default TextInput

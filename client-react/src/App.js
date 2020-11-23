@@ -11,6 +11,9 @@ import Chats from './pages/Chats'
 import Header from './pages/Header'
 import Player from './pages/Player'
 import Messages from './pages/Messages'
+import Modal from './pages/Modal'
+
+import './App.css'
 
 const App = () => {
   return (
@@ -29,6 +32,9 @@ const App = () => {
           </Route>
           <Route path='/messages'>
             <Messages />
+          </Route>
+          <Route path='/modal'>
+            <Modal />
           </Route>
           <Route path='/'>
             <Index />

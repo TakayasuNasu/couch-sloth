@@ -35,25 +35,17 @@ const ListItem = styled.li`
     line-height: 1.4;
     font-size: 14px;
     font-weight: 500;
-    font-family: "Hiragino Kaku Gothic ProN",  Arial, sans-serif;
     color: #fff;
   }
 `
 
-const circleColor = () => {
-  const color = ['#FFC312', '#C4E538',
-  '#12CBC4', '#ED4C67', '#B53471',
-  '#0652DD', '#009432', '#006266', '#1B1464']
-  const i = Math.floor(Math.random() * color.length)
-  return color[i]
-}
 const items = props => {
   if (props.messages) {
     let count = 0
     return props.messages.map(data => {
       count ++
       return (
-        <ListItem bgColor={circleColor} key={data.userName + count}>
+        <ListItem bgColor={data.iconColor} key={data.userName + count}>
           <div className="left"><p>{data.userName.charAt(0).toUpperCase()}</p></div>
           <div className="right">
             <p className="chat">{data.messages}</p>
@@ -78,5 +70,9 @@ const Chats = props => (
     {items(props)}
   </UL>
 )
+
+Chats.defaultProps = {
+  messages: '',
+}
 
 export default Chats
