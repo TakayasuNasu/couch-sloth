@@ -83,3 +83,5 @@ Reference
 - [mhrimaz/AwesomeJavaFX: A curated list of awesome JavaFX libraries, books, frameworks, etc\.\.\.](https://github.com/mhrimaz/AwesomeJavaFX)
 - [Quick Start—Ktor 1\.4\.0](https://ktor.io/docs/quickstart-index.html)
 - [javaFX\-multiple\-controllers\-tutorial](https://github.com/mvpjava/javaFX-multiple-controllers-tutorial)
+- [Material\-UI: A popular React UI framework](https://material-ui.com/)
+- [react\-modal documentation](http://reactcommunity.org/react-modal/)

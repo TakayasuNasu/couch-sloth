@@ -29,7 +29,9 @@ fun Route.apiController() {
         if (frame is Frame.Text) {
           val text = frame.readText()
           println(text)
-          outgoing.send(Frame.Text("YOU SAID $text"))
+          for (socket in wsConnections) {
+            socket.outgoing.send(Frame.Text(text))
+          }
           if (frame.readText() == "close") {
             close(CloseReason(CloseReason.Codes.NORMAL, "Closed by server"))
           }

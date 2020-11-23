@@ -15,8 +15,11 @@ class ApiControllerKtTest {
 
     withTestApplication(Application::main) {
       handleWebSocketConversation("/say") { incoming, outgoing ->
-        outgoing.send(Frame.Text("HELLO"))
-        assertEquals("YOU SAID HELLO", (incoming.receive() as Frame.Text).readText())
+        outgoing.send(Frame.Text("{\"userName\":\"Yasu\",\"messages\":\"that we here highly resolve\"}"))
+        assertEquals(
+          "{\"userName\":\"Yasu\",\"messages\":\"that we here highly resolve\"}",
+          (incoming.receive() as Frame.Text).readText()
+        )
       }
     }
   }
