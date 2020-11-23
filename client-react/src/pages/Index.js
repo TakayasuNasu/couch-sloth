@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import Player from '../components/Player'
 import Header from '../components/Header'
@@ -55,8 +55,32 @@ const data = [
   {userName: 'microsoft', messages: 'by the people, for the people, shall not perish from the earth.'},
 ]
 
-const Index = props => (
-  <Grid>
+
+
+const messageSocket = new WebSocket('ws://localhost:8080/say')
+
+messageSocket.onopen = () => {
+  console.log('Succesfully connected to chat server at ws://localhost:8080/say.')
+}
+
+const sendMessage = (message => {
+  messageSocket.send(JSON.stringify(message))
+})
+
+const Index = props => {
+  const [messages, setMessages] = useState(data)
+
+  messageSocket.onmessage = event => {
+    setMessages([...messages, JSON.parse(event.data)])
+  }
+
+  const chatElement = useRef(null);
+  useEffect(() => {
+    chatElement.current.scrollIntoView({behavior: "smooth", block: "end"})
+  }, [messages])
+
+  return (
+    <Grid>
     <AreaHeader>
       <Header />
     </AreaHeader>
@@ -64,12 +88,14 @@ const Index = props => (
       <Player />
     </AreaPlayer>
     <AreaChat>
-      <Chats messages={data} />
+      <Chats messages={messages} />
+      <div ref={chatElement} style={{visibility: "hidden"}} />
     </AreaChat>
     <AreaMessages>
-      <Messages />
+      <Messages sendMessage={sendMessage} />
     </AreaMessages>
   </Grid>
-)
+  )
+}
 
 export default Index

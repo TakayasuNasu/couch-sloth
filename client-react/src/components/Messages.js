@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import ReactDOM from 'react-dom'
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { fas } from '@fortawesome/free-solid-svg-icons';
@@ -17,7 +16,7 @@ const Wrapper = styled.section`
 `;
 
 const Form = styled.form`
-    
+
 `;
 
 const StyledInput = styled.input`
@@ -38,7 +37,7 @@ const SubmitButton = styled.button`
     background: #d9d9d9;
     color: white;
     height: 52px;
-    width: 50px
+    width: 50px;
 `;
 
 const SmileyButton = styled.button`
@@ -49,15 +48,8 @@ const SmileyButton = styled.button`
     background: #d9d9d9;
     color: white;
     height: 52px;
-    width: 50px
+    width: 50px;
 `;
-
-
-// const Messages = props => (
-//     <h1>This is Messages component</h1>
-// )
-
-
 
 
 // quoted from https://reactjs.org/docs/forms.html
@@ -75,8 +67,11 @@ class TextInput extends React.Component {
     }
 
     handleSubmit(event) {
-        alert('A message was submitted: ' + this.state.value);
-        event.preventDefault();
+        if (this.state.value) {
+            this.props.sendMessage({userName: 'Yasu', messages: this.state.value})
+        }
+        this.setState({value: ''})
+        event.preventDefault()
     }
 
     render() {
@@ -85,7 +80,7 @@ class TextInput extends React.Component {
                 <Form>
                     <label>
                         {/*Message:*/}
-                        <StyledInput id="message" type="text" value={this.state.message} placeholder="Write your message here..." onChange={this.handleChange} />
+                        <StyledInput id="message" type="text" value={this.state.value} placeholder="Write your message here..." onChange={this.handleChange} />
                     </label>
                     <SubmitButton onClick={this.handleSubmit} type="submit" value="Submit" ><FontAwesomeIcon icon="play" size="2x" color="black" /></SubmitButton>
                     <SmileyButton><FontAwesomeIcon icon={["far", "smile"]} size="2x" color="black" /></SmileyButton>

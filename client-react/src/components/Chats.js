@@ -35,6 +35,7 @@ const ListItem = styled.li`
     line-height: 1.4;
     font-size: 14px;
     font-weight: 500;
+    font-family: "Hiragino Kaku Gothic ProN",  Arial, sans-serif;
     color: #fff;
   }
 `
