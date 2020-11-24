@@ -61,7 +61,7 @@ WebSocket Endpoint
 ---
 
 | Endpoint  | describe  | parameter |
-|---|---|
+|---|---|---|
 | `/say`  | Massage send websocket | {userName: String, messages: String} |
 | `/video/play`  | Start youtube | {playing: Boolean, played: double} |
 | `/video/stop`  | Stop youtube | {playing: Boolean, played: double} |
