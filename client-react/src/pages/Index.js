@@ -98,14 +98,14 @@ const sendMessage = (message => {
   messageSocket.send(JSON.stringify(message))
 })
 
-const playVideo = (() => {
+const playVideo = ((playing, played) => {
   playingSocket.send(JSON.stringify({playing:true,played:0.177}))
 })
 
+const stopVideo = ((playing, played) => {
+  stopedSocket.send(JSON.stringify({playing:false,played:0.177}))
+})
 
-// const sendData = (message => {
-//   messageSocket.send(JSON.stringify(message))
-// })
 
 const Index = props => {
   const [messages, setMessages] = useState(data)
@@ -129,7 +129,7 @@ const Index = props => {
           <Header />
         </AreaHeader>
         <AreaPlayer>
-          <Player playVideo={playVideo} />
+          <Player playVideo={playVideo} stopVideo={stopVideo} />
         </AreaPlayer>
         <AreaChat>
           <Chats messages={messages} />

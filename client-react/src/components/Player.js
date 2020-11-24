@@ -18,11 +18,13 @@ const Player = props => (
   height='100%'
   controls='1'
   onPlay={() => {
-    props.playVideo()
+    props.playVideo(playing, played)
     console.log(123)
   }}
-  // onPause={() => onPlayerStateChange (
-  //   this.constructUserPlayerState ( 'paused', videoPlayer ))}
+  onPause={() => {
+    props.stopVideo(playing, played)
+    console.log(321)
+  }}
     /></Div>
 )
 
