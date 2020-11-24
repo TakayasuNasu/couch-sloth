@@ -60,13 +60,18 @@ const LoginModal = props => {
               fullWidth
               id="outlined-required"
               label="Required"
-              defaultValue="Your Name"
+              placeholder="YourName"
               variant="outlined"
               onChange={changeName}
             />
           </div>
           <div className="box button">
-            <Button onClick={enter} variant="contained" color="primary">Enter</Button>
+            <Button
+              type="submit"
+              onClick={enter}
+              variant="contained"
+              color="primary"
+            >Enter</Button>
           </div>
         </form>
       </Div>

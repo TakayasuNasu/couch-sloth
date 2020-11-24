@@ -8,7 +8,7 @@ import logo from '../img/sloth.png'
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  padding-left: 10px;
+  padding-left: 24px;
   padding-top: 10px;
   background-color: #000;
   `;
