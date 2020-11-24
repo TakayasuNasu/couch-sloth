@@ -68,13 +68,39 @@ const data = [
 
 const messageSocket = new WebSocket('ws://localhost:8080/say')
 
+const playingSocket = new WebSocket('ws://localhost:8080/video/play')
+
+const stopedSocket  = new WebSocket('ws://localhost:8080/video/stop')
+
+// playingSocket.send(JSON.stringify({{playing:true,played:0.177}))
+
+// stopedSocket.send(JSON.stringify({{playing:false,played:0.177}))
+
+
 messageSocket.onopen = () => {
   console.log('Succesfully connected to chat server at ws://localhost:8080/say.')
+}
+
+playingSocket.onopen = () => {
+  console.log('Succesfully connected to chat server at ws://localhost:8080/video/play.')
+}
+
+stopedSocket.onopen = () => {
+  console.log('Succesfully connected to chat server at ws://localhost:8080/video/stop.')
 }
 
 const sendMessage = (message => {
   messageSocket.send(JSON.stringify(message))
 })
+
+const playVideo = (() => {
+  playingSocket.send(JSON.stringify({playing:true,played:0.177}))
+})
+
+
+// const sendData = (message => {
+//   messageSocket.send(JSON.stringify(message))
+// })
 
 const Index = props => {
   const [messages, setMessages] = useState(data)
@@ -98,7 +124,7 @@ const Index = props => {
           <Header />
         </AreaHeader>
         <AreaPlayer>
-          <Player />
+          <Player playVideo={playVideo} />
         </AreaPlayer>
         <AreaChat>
           <Chats messages={messages} />

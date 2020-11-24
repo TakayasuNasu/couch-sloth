@@ -8,7 +8,17 @@ const Div = styled.div`
 `
 
 const Player = props => (
-  <Div><ReactPlayer url='https://www.youtube.com/watch?v=ysz5S6PUM-U' width='100%' height='100%'/></Div>
+  <Div><ReactPlayer 
+  url='https://www.youtube.com/watch?v=ysz5S6PUM-U' 
+  width='100%' 
+  height='100%'
+  onPlay={() => {
+    props.playVideo()
+    console.log(123)
+  }}
+  // onPause={() => onPlayerStateChange (
+  //   this.constructUserPlayerState ( 'paused', videoPlayer ))}
+    /></Div>
 )
 
 export default Player
