@@ -41,4 +41,24 @@ fun Route.apiController() {
       wsConnections -= this
     }
   }
+
+  webSocket("/video/*") {
+    wsConnections += this
+    try {
+      incoming.consumeEach { frame ->
+        if (frame is Frame.Text) {
+          val text = frame.readText()
+          println(text)
+          for (socket in wsConnections) {
+            socket.outgoing.send(Frame.Text(text))
+          }
+          if (frame.readText() == "close") {
+            close(CloseReason(CloseReason.Codes.NORMAL, "Closed by server"))
+          }
+        }
+      }
+    } finally {
+      wsConnections -= this
+    }
+  }
 }
