@@ -9,8 +9,10 @@ const Div = styled.div`
   height: 100%;
 `
 
+
+// quoted from https://github.com/cookpete/react-player (react player)
 const Player = props => (
-  <Div><ReactPlayer url='https://www.youtube.com/watch?v=ysz5S6PUM-U' width='100%' height='100%'/></Div>
+  <Div><ReactPlayer url='https://www.youtube.com/watch?v=ysz5S6PUM-U' width='100%' height='100%' controls='1'  /></Div>
 )
 
 export default Player
