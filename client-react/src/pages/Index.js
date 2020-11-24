@@ -10,12 +10,10 @@ const Grid = styled.main`
   display: grid;
   grid-gap: 2.5vw 2.5vw;
   justify-content: space-evenly;
-  grid-template-rows   : 95px 516px 1fr;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas  : "header header"
-                        "player chat"
-                        "input input";
-
+  grid: "header header" 95px
+        "player  chat"  calc(100vh - 280px)
+        "input   input" 120px
+      / 6.8fr      3.2fr;
   background-color: #181818;
 `
 
@@ -25,20 +23,27 @@ const AreaHeader = styled.header`
 
 const AreaPlayer = styled.section`
   grid-area: player;
-  margin-left: 2.5vw;
-  width: 912px;
+  justify-self: center;
+  width: 100%;
   `
 
 const AreaChat = styled.section`
   grid-area: chat;
   justify-self: center;
   overflow-x: scroll;
-  width: 402px;
+  width: 88%;
   color: #fff;
 `
 
 const AreaMessages = styled.section`
   grid-area: input;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 100%;
+  background-color: black;
 `
 
 const iconColor = () => {
