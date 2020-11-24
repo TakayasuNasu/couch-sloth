@@ -57,13 +57,15 @@ Structure
 Usage
 ---
 
-REST API
+WebSocket Endpoint
 ---
 
-| Endpoint  | describe  |
+| Endpoint  | describe  | parameter |
 |---|---|
-| `/say`  | Massage send websocket |
-| `/video/play`  | Start youtube |
+| `/say`  | Massage send websocket | {userName: String, messages: String} |
+| `/video/play`  | Start youtube | {playing: Boolean, played: double} |
+| `/video/stop`  | Stop youtube | {playing: Boolean, played: double} |
+| `/video/url`  | Stop youtube | {url: String} |
 
 
 Contributing
@@ -85,3 +87,6 @@ Reference
 - [javaFX\-multiple\-controllers\-tutorial](https://github.com/mvpjava/javaFX-multiple-controllers-tutorial)
 - [Material\-UI: A popular React UI framework](https://material-ui.com/)
 - [react\-modal documentation](http://reactcommunity.org/react-modal/)
+- [brambo48/react\-youtube\-sync: Play youtube videos on multiple computers / devices in perfect sync\. Built with React, Redux & Socket\.IO](https://github.com/brambo48/react-youtube-sync)
+- [cookpete/react\-player: A React component for playing a variety of URLs, including file paths, YouTube, Facebook, Twitch, SoundCloud, Streamable, Vimeo, Wistia and DailyMotion](https://github.com/CookPete/react-player)
+- [Larkenx/ktor\-react\-chat: A real\-time chat client\+server created using web sockets with Kotlin\+Ktor backend and React\+Material UI front end\.](https://github.com/Larkenx/ktor-react-chat)

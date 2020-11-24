@@ -3,8 +3,10 @@ import styled from 'styled-components'
 import ReactPlayer from 'react-player'
 
 const Div = styled.div`
-  width: 912px;
-  height: 516px;
+  margin: 0 auto;
+  width: 96%;
+  max-width: 1200px;
+  height: 100%;
 `
 
 const Player = props => (
