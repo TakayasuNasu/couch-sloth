@@ -21,6 +21,22 @@ class ApiControllerKtTest {
           (incoming.receive() as Frame.Text).readText()
         )
       }
+
+      handleWebSocketConversation("/video/play") { incoming, outgoing ->
+        outgoing.send(Frame.Text("{\"playing\":\"true\",\"playd\":\"0.177\"}"))
+        assertEquals(
+          "{\"playing\":\"true\",\"playd\":\"0.177\"}",
+          (incoming.receive() as Frame.Text).readText()
+        )
+      }
+
+      handleWebSocketConversation("/video/stop") { incoming, outgoing ->
+        outgoing.send(Frame.Text("{\"playing\":\"false\",\"playd\":\"0.355\"}"))
+        assertEquals(
+          "{\"playing\":\"false\",\"playd\":\"0.355\"}",
+          (incoming.receive() as Frame.Text).readText()
+        )
+      }
     }
   }
 }
