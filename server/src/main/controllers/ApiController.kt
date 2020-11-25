@@ -27,10 +27,9 @@ fun Route.apiController() {
     wsConnections += this
     try {
       sendClient(wsConnections, incoming)
-      val text = (incoming.receive() as Frame.Text).readText()
-      if (text.equals("close")) close(CloseReason(CloseReason.Codes.NORMAL, "Closed by server"))
     } finally {
       wsConnections -= this
+      close(CloseReason(CloseReason.Codes.NORMAL, "Closed by server"))
     }
   }
 
@@ -39,22 +38,20 @@ fun Route.apiController() {
     wsForPlay += this
     try {
       sendClient(wsForPlay, incoming)
-      val text = (incoming.receive() as Frame.Text).readText()
-      if (text.equals("close")) close(CloseReason(CloseReason.Codes.NORMAL, "Closed by server"))
     } finally {
       wsForPlay -= this
+      close(CloseReason(CloseReason.Codes.NORMAL, "Closed by server"))
     }
   }
 
-  val wsForStop = Collections.synchronizedSet(LinkedHashSet<DefaultWebSocketSession>())
-  webSocket("/video/stop") {
-    wsForStop += this
+  val wsForPause = Collections.synchronizedSet(LinkedHashSet<DefaultWebSocketSession>())
+  webSocket("/video/pause") {
+    wsForPause += this
     try {
-      sendClient(wsForStop, incoming)
-      val text = (incoming.receive() as Frame.Text).readText()
-      if (text.equals("close")) close(CloseReason(CloseReason.Codes.NORMAL, "Closed by server"))
+      sendClient(wsForPause, incoming)
     } finally {
-      wsForStop -= this
+      wsForPause -= this
+      close(CloseReason(CloseReason.Codes.NORMAL, "Closed by server"))
     }
   }
 
