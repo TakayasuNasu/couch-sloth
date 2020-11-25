@@ -129,7 +129,7 @@ const Index = props => {
           <Header />
         </AreaHeader>
         <AreaPlayer>
-          <Player playVideo={playVideo} stopVideo={stopVideo} />
+          <Player />
         </AreaPlayer>
         <AreaChat>
           <Chats messages={messages} />
