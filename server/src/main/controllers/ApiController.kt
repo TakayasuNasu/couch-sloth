@@ -8,6 +8,7 @@ import io.ktor.routing.get
 import io.ktor.routing.route
 import io.ktor.websocket.webSocket
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.consumeEach
 import java.util.*
 import kotlin.collections.LinkedHashSet
@@ -25,18 +26,9 @@ fun Route.apiController() {
   webSocket("/say") {
     wsConnections += this
     try {
-      incoming.consumeEach { frame ->
-        if (frame is Frame.Text) {
-          val text = frame.readText()
-          println(text)
-          for (socket in wsConnections) {
-            socket.outgoing.send(Frame.Text(text))
-          }
-          if (frame.readText() == "close") {
-            close(CloseReason(CloseReason.Codes.NORMAL, "Closed by server"))
-          }
-        }
-      }
+      sendClient(wsConnections, incoming)
+      val text = (incoming.receive() as Frame.Text).readText()
+      if (text.equals("close")) close(CloseReason(CloseReason.Codes.NORMAL, "Closed by server"))
     } finally {
       wsConnections -= this
     }
@@ -46,18 +38,9 @@ fun Route.apiController() {
   webSocket("/video/play") {
     wsForPlay += this
     try {
-      incoming.consumeEach { frame ->
-        if (frame is Frame.Text) {
-          val text = frame.readText()
-          println(text)
-          for (socket in wsForPlay) {
-            socket.outgoing.send(Frame.Text(text))
-          }
-          if (frame.readText() == "close") {
-            close(CloseReason(CloseReason.Codes.NORMAL, "Closed by server"))
-          }
-        }
-      }
+      sendClient(wsForPlay, incoming)
+      val text = (incoming.receive() as Frame.Text).readText()
+      if (text.equals("close")) close(CloseReason(CloseReason.Codes.NORMAL, "Closed by server"))
     } finally {
       wsForPlay -= this
     }
@@ -67,20 +50,25 @@ fun Route.apiController() {
   webSocket("/video/stop") {
     wsForStop += this
     try {
-      incoming.consumeEach { frame ->
-        if (frame is Frame.Text) {
-          val text = frame.readText()
-          println(text)
-          for (socket in wsForStop) {
-            socket.outgoing.send(Frame.Text(text))
-          }
-          if (frame.readText() == "close") {
-            close(CloseReason(CloseReason.Codes.NORMAL, "Closed by server"))
-          }
-        }
-      }
+      sendClient(wsForStop, incoming)
+      val text = (incoming.receive() as Frame.Text).readText()
+      if (text.equals("close")) close(CloseReason(CloseReason.Codes.NORMAL, "Closed by server"))
     } finally {
       wsForStop -= this
+    }
+  }
+
+}
+
+@ExperimentalCoroutinesApi
+suspend fun sendClient(webScoket: Set<DefaultWebSocketSession>, incoming: ReceiveChannel<Frame>) {
+  incoming.consumeEach { frame ->
+    if (frame is Frame.Text) {
+      val text = frame.readText()
+      println(text)
+      for (socket in webScoket) {
+        socket.outgoing.send(Frame.Text(text))
+      }
     }
   }
 }
