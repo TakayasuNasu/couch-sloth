@@ -63,9 +63,9 @@ WebSocket Endpoint
 | Endpoint  | describe  | parameter |
 |---|---|---|
 | `/say`  | Massage send websocket | {userName: String, messages: String} |
-| `/video/play`  | Start youtube | {playing: Boolean, played: double} |
-| `/video/stop`  | Stop youtube | {playing: Boolean, played: double} |
-| `/video/url`  | Stop youtube | {url: String} |
+| `/video/play`  | Play youtube | {isPlay: Boolean, progress: double} |
+| `/video/pause`  | Pause youtube | {isPlay: Boolean, progress: double} |
+| `/video/url`  | Set youtube URL | {url: String} |
 
 
 Contributing
