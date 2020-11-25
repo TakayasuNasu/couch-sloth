@@ -11,6 +11,7 @@ import Index from './pages/Index'
 import Chats from './pages/Chats'
 import Header from './pages/Header'
 import Player from './pages/Player'
+import Player2 from './components/Player2'
 import Messages from './pages/Messages'
 import Modal from './pages/Modal'
 import './App.css'
@@ -54,6 +55,9 @@ class App extends React.Component {
             </Route>
             <Route path='/player'>
               <Player />
+            </Route>
+            <Route path='/player2'>
+              <Player2 />
             </Route>
             <Route path='/searchbar'>
               <Searchbar />
