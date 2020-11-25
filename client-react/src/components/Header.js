@@ -1,6 +1,9 @@
 import React from 'react'
 import styled from "styled-components"
 import logo from '../img/sloth.png'
+import {createMuiTheme, ThemeProvider} from "@material-ui/core/styles";
+import {TextField} from "@material-ui/core";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 
 // Styled CSS
@@ -28,6 +31,32 @@ import logo from '../img/sloth.png'
     margin-top: 5px;
   `;
 
+  const Form = styled.form`
+    float: right;
+    width: 500px;
+  `;
+
+
+
+
+  const SubmitButton = styled.button`
+      margin-left: -44px;
+      width: 500px;
+      background-color: transparent;
+      cursor: pointer;
+      border: none;
+      transition: .2s;
+      &:hover {
+          transform: scale(1.4, 1.4);
+      }
+  `;
+
+  const FlexBox = styled.div`
+      display: flex;
+      position: relative;
+      float: right;
+      }
+  `;
 
 
 
@@ -37,8 +66,31 @@ const Header = props => (
     <Navbar>
       <img src={logo} alt="Logo"></img>
       <Brand>Couch-Sloth</Brand>
+
+      <Form>
+        <ThemeProvider theme={createMuiTheme({palette:{type:'dark'}})}>
+          <FlexBox>
+            <TextField
+                fullWidth
+                label="Input URL here..."
+                id="filled-basic"
+            />
+            <SubmitButton
+                className="search"
+                type="submit"
+
+            >
+              <FontAwesomeIcon icon={["fas","search"]} size="2x" color="#fff" />
+            </SubmitButton>
+          </FlexBox>
+        </ThemeProvider>
+      </Form>
     </Navbar>
+
+
   </Wrapper>
 )
+
+
 
 export default Header
