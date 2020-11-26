@@ -37,6 +37,14 @@ class ApiControllerKtTest {
           (incoming.receive() as Frame.Text).readText()
         )
       }
+
+      handleWebSocketConversation("/video/url") { incoming, outgoing ->
+        outgoing.send(Frame.Text("{\"url\":\"https://www.youtube.com/watch?v=ysz5S6PUM-U\"}"))
+        assertEquals(
+          "{\"url\":\"https://www.youtube.com/watch?v=ysz5S6PUM-U\"}",
+          (incoming.receive() as Frame.Text).readText()
+        )
+      }
     }
   }
 }

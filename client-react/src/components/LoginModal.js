@@ -25,6 +25,11 @@ const Div = styled.div`
   div.button {
     text-align: right;
   }
+  p.error {
+    margin-top: 20px;
+    color: red;
+    line-height: 1.6;
+  }
 `
 
 Modal.setAppElement('div')
@@ -71,9 +76,11 @@ const LoginModal = props => {
               onClick={enter}
               variant="contained"
               color="primary"
+              disabled={!props.connection}
             >Enter</Button>
           </div>
         </form>
+        {!props.connection && <p className="error">Error in connection establishment</p>}
       </Div>
     </Modal>
   )
@@ -81,6 +88,7 @@ const LoginModal = props => {
 
 LoginModal.defaultProps = {
   open: true,
+  connection: true,
   setUserName: () => {},
   setMyIconColor: () => {},
 }
