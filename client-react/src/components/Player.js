@@ -12,8 +12,6 @@ const Div = styled.div`
 const playingSocket = new WebSocket('ws://localhost:8080/video/play')
 const pauseSocket  = new WebSocket('ws://localhost:8080/video/pause')
 
-
-
 const Player = props => {
   const [playing, setPlaying] = useState(false)
   const [played, setPlayed] = useState(0)
@@ -68,6 +66,7 @@ const Player = props => {
 
 Player.defaultProps = {
   url: 'https://www.youtube.com/watch?v=ysz5S6PUM-U',
+  setUrl: url => console.log(url)
 }
 
 export default Player

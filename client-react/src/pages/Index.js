@@ -55,23 +55,15 @@ const iconColor = () => {
 }
 
 const data = [
-  {userName: 'Yasu', messages: 'that we here highly resolve', iconColor: iconColor()},
-  {userName: 'Yuki', messages: 'that these dead shall not have died in vain—that this nation,', iconColor: iconColor()},
-  {userName: 'Nico', messages: 'under God, shall have a new birth of freedom—and that government of the people, by the people,', iconColor: iconColor()},
-  {userName: 'Derrick', messages: 'by the people, for the people, shall not perish from the earth.', iconColor: iconColor()},
-  {userName: 'Shin', messages: 'that we here highly resolve', iconColor: iconColor()},
-  {userName: 'Taro', messages: 'that these dead shall not have died in vain—that this nation,', iconColor: iconColor()},
-  {userName: 'beckham', messages: 'under God, shall have a new birth of freedom—and that government of the people, by the people,', iconColor: iconColor()},
-  {userName: 'amazon', messages: 'by the people, for the people, shall not perish from the earth.', iconColor: iconColor()},
-  {userName: 'google', messages: 'that we here highly resolve', iconColor: iconColor()},
-  {userName: 'facebook', messages: 'that these dead shall not have died in vain—that this nation,', iconColor: iconColor()},
-  {userName: 'apple', messages: 'under God, shall have a new birth of freedom—and that government of the people, by the people,', iconColor: iconColor()},
-  {userName: 'microsoft', messages: 'by the people, for the people, shall not perish from the earth.', iconColor: iconColor()},
+  {userName: 'c', messages: 'How to use.', iconColor: iconColor()},
+  {userName: 'o', messages: 'You can chat with your friends while watching youtube!', iconColor: iconColor()},
+  {userName: 'u', messages: 'Synchronize video start, pause and sequence position changes with your friends.', iconColor: iconColor()},
+  {userName: 'c', messages: 'Enter the url of the video you want to watch in the header or enter your youtube id to change the video you want to watch.', iconColor: iconColor()},
+  {userName: 'h', messages: 'Thanks for visiting. Enjoy the video with your friend.', iconColor: iconColor()},
 ]
 
-
-
 const messageSocket = new WebSocket('ws://localhost:8080/say')
+const urlSocket  = new WebSocket('ws://localhost:8080/video/url')
 
 messageSocket.onopen = () => {
   console.log('Succesfully connected to chat server at ws://localhost:8080/say.')
@@ -85,9 +77,17 @@ const Index = props => {
   const [messages, setMessages] = useState(data)
   const [userName, setUserName] = useState('')
   const [myIconColor, setMyIconColor] = useState('#0652DD')
+  const [youtube, setYoutube] = useState('https://www.youtube.com/watch?v=ysz5S6PUM-U')
+  const [connection, setConnection] = useState(true)
 
+  // for chatting
   messageSocket.onmessage = event => {
     setMessages([...messages, JSON.parse(event.data)])
+  }
+
+  messageSocket.onerror = event => {
+    console.error(event)
+    setConnection(false)
   }
 
   const chatElement = useRef(null);
@@ -95,15 +95,32 @@ const Index = props => {
     chatElement.current.scrollIntoView({behavior: "smooth", block: "end"})
   }, [messages])
 
+  // changed youtube url
+  const isFirstRender = useRef(false)
+  useEffect(() => {
+    if (isFirstRender.current) {
+      urlSocket.send(JSON.stringify({url:youtube}))
+    } else {
+      isFirstRender.current = true
+    }
+  }, [youtube])
+
+  urlSocket.onmessage = event => {
+    const {url} = JSON.parse(event.data)
+    if (url != youtube) {
+      setYoutube(url)
+    }
+  }
+
   return (
     <React.Fragment>
-      <LoginModal open={open} setUserName={setUserName} setMyIconColor={setMyIconColor} />
+      <LoginModal open={open} setUserName={setUserName} setMyIconColor={setMyIconColor} connection={connection} />
       <Grid>
         <AreaHeader>
-          <Header />
+          <Header setYoutube={setYoutube} />
         </AreaHeader>
         <AreaPlayer>
-          <Player />
+          <Player url={youtube} setUrl={setYoutube} />
         </AreaPlayer>
         <AreaChat>
           <Chats messages={messages} />

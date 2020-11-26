@@ -55,6 +55,17 @@ fun Route.apiController() {
     }
   }
 
+  val wsURL = Collections.synchronizedSet(LinkedHashSet<DefaultWebSocketSession>())
+  webSocket("/video/url") {
+    wsURL += this
+    try {
+      sendClient(wsURL, incoming)
+    } finally {
+      wsURL -= this
+      close(CloseReason(CloseReason.Codes.NORMAL, "Closed by server"))
+    }
+  }
+
 }
 
 @ExperimentalCoroutinesApi
